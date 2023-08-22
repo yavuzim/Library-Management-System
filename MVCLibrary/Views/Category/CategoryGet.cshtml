@@ -1,0 +1,21 @@
+﻿@model MVCLibrary.Models.Entities.Category
+@{
+    ViewBag.Title = "CategoryGet";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<title>Kategori Güncelle</title>
+@using (Html.BeginForm("CategoryUpdate", "Category", FormMethod.Post))
+{
+    <div class="form-group" style="margin-top:15px;">
+        @Html.LabelForModel("Kategori Id")
+        @Html.TextBoxFor(p => p.categoryId, new { @class = "form-control" })
+        <br />
+        @Html.LabelForModel("Kategori Adı")
+        @Html.TextBoxFor(p => p.categoryName, new { @class = "form-control" })
+    </div>
+    <div>
+        <button class="btn btn-warning" type="submit">Güncelle</button>
+    </div>
+}
+

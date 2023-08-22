@@ -11,6 +11,7 @@ namespace MVCLibrary.Controllers
     {
         // GET: Category
         DbLibraryEntities dbLibraryEntities;
+        Category category;
         public CategoryController()
         {
             dbLibraryEntities = new DbLibraryEntities();
@@ -34,8 +35,20 @@ namespace MVCLibrary.Controllers
         }
         public ActionResult CategoryDelete(int categoryId)
         {
-            var category = dbLibraryEntities.Category.Find(categoryId);
+            category = dbLibraryEntities.Category.Find(categoryId);
             dbLibraryEntities.Category.Remove(category);
+            dbLibraryEntities.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult CategoryGet(int categoryId)
+        {
+            category = dbLibraryEntities.Category.Find(categoryId);
+            return View("CategoryGet", category);
+        }
+        public ActionResult CategoryUpdate(Category getCategory)
+        {
+            category = dbLibraryEntities.Category.Find(getCategory.categoryId);
+            category.categoryName = getCategory.categoryName;
             dbLibraryEntities.SaveChanges();
             return RedirectToAction("Index");
         }
