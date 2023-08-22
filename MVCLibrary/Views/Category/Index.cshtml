@@ -1,14 +1,29 @@
-﻿
+﻿@using MVCLibrary.Models.Entities
+@model List<Category>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
+<title>Kategoriler</title>
+<table class="table table-bordered" style="margin-top:15px">
+    <tr class="table table-dark">
+        <th>Kategori Id</th>
+        <th>Kategori Adı</th>
+        <th>Kategori Sil</th>
+        <th>Kategori Güncelle</th>
+    </tr>
+    @{
+        foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.categoryId</td>
+                <td>@category.categoryName</td>
+                <td><a href="/Category/CategoryDelete?categoryId=@category.categoryId" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Category/CategoryGet?kategoi_id=@category.categoryId" class="btn btn-success">Güncelle</a></td>
+            </tr>
 
-<h2>Sidebar with Icons</h2>
+        }
+    }
+</table>
+<a href="/Category/CategoryAdd/" class="btn btn-primary" style="margin-bottom:15px">Yeni Kategori Ekle</a>
 
-
-This side navigation is of full height (100%) and always shown.
-
-Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.
-
-Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.
