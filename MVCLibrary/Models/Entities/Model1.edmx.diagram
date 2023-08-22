@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="521592e251724c96abaa99f998f645fc" Name="Diagram1">
+        <EntityTypeShape EntityType="DbLibraryModel.Author" Width="1.5" PointX="1.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbLibraryModel.Book" Width="1.5" PointX="3.625" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbLibraryModel.CashRegisters" Width="1.5" PointX="7.25" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbLibraryModel.Category" Width="1.5" PointX="5.875" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbLibraryModel.Employee" Width="1.5" PointX="7.625" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbLibraryModel.Members" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbLibraryModel.MovementType" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbLibraryModel.Penalties" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="DbLibraryModel.FK__Book__authorId__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="DbLibraryModel.FK__Book__categoryId__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="DbLibraryModel.FK__MovementT__bookI__4316F928" ManuallyRouted="false" />
+        <AssociationConnector Association="DbLibraryModel.FK__MovementT__emplo__44FF419A" ManuallyRouted="true" >
+          <ConnectorPoint PointX="7.625" PointY="4.375" />
+          <ConnectorPoint PointX="5.9746875" PointY="4.375" />
+          <ConnectorPoint PointX="5.9746875" PointY="3.9874886067708335" />
+          <ConnectorPoint PointX="4.5" PointY="3.9874886067708335" />
+        </AssociationConnector>
+        <AssociationConnector Association="DbLibraryModel.FK__MovementT__membe__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="DbLibraryModel.FK__Penalties__membe__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="DbLibraryModel.FK__Penalties__movem__48CFD27E" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
