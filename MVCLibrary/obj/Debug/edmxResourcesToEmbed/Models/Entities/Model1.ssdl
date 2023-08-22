@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DbLibraryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Author">
+    <Key>
+      <PropertyRef Name="authorId" />
+    </Key>
+    <Property Name="authorId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firstName" Type="varchar" MaxLength="30" />
+    <Property Name="lasName" Type="varchar" MaxLength="30" />
+    <Property Name="detail" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="bookId" />
+    </Key>
+    <Property Name="bookId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bookName" Type="varchar" MaxLength="50" />
+    <Property Name="categoryId" Type="tinyint" />
+    <Property Name="authorId" Type="int" />
+    <Property Name="publicationYear" Type="char" MaxLength="4" />
+    <Property Name="publishingHouse" Type="varchar" MaxLength="50" />
+    <Property Name="pageNumber" Type="varchar" MaxLength="4" />
+    <Property Name="statusBook" Type="bit" />
+  </EntityType>
+  <EntityType Name="CashRegisters">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="monthDate" Type="varchar" MaxLength="20" />
+    <Property Name="totalAmount" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="categoryId" />
+    </Key>
+    <Property Name="categoryId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="categoryName" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="employeeId" />
+    </Key>
+    <Property Name="employeeId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="employeeName" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Members">
+    <Key>
+      <PropertyRef Name="memberId" />
+    </Key>
+    <Property Name="memberId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firstName" Type="varchar" MaxLength="20" />
+    <Property Name="lasName" Type="varchar" MaxLength="20" />
+    <Property Name="eMail" Type="varchar" MaxLength="50" />
+    <Property Name="userName" Type="varchar" MaxLength="20" />
+    <Property Name="userPassword" Type="varchar" MaxLength="20" />
+    <Property Name="photo" Type="varchar" MaxLength="250" />
+    <Property Name="phone" Type="varchar" MaxLength="20" />
+    <Property Name="school" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="MovementType">
+    <Key>
+      <PropertyRef Name="movementTypeId" />
+    </Key>
+    <Property Name="movementTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="bookId" Type="int" />
+    <Property Name="memberId" Type="int" />
+    <Property Name="employeeId" Type="tinyint" />
+    <Property Name="purchaseDate" Type="smalldatetime" />
+    <Property Name="returnDate" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="Penalties">
+    <Key>
+      <PropertyRef Name="penaltyId" />
+    </Key>
+    <Property Name="penaltyId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="memberId" Type="int" />
+    <Property Name="movementTypeId" Type="int" />
+    <Property Name="penaltyStart" Type="smalldatetime" />
+    <Property Name="penaltyEnd" Type="smalldatetime" />
+    <Property Name="money" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <Association Name="FK__Book__authorId__3C69FB99">
+    <End Role="Author" Type="Self.Author" Multiplicity="0..1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Author">
+        <PropertyRef Name="authorId" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="authorId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Book__categoryId__3B75D760">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Book" Type="Self.Book" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="categoryId" />
+      </Principal>
+      <Dependent Role="Book">
+        <PropertyRef Name="categoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MovementT__bookI__4316F928">
+    <End Role="Book" Type="Self.Book" Multiplicity="0..1" />
+    <End Role="MovementType" Type="Self.MovementType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="bookId" />
+      </Principal>
+      <Dependent Role="MovementType">
+        <PropertyRef Name="bookId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MovementT__emplo__44FF419A">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="MovementType" Type="Self.MovementType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="employeeId" />
+      </Principal>
+      <Dependent Role="MovementType">
+        <PropertyRef Name="employeeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MovementT__membe__440B1D61">
+    <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
+    <End Role="MovementType" Type="Self.MovementType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Members">
+        <PropertyRef Name="memberId" />
+      </Principal>
+      <Dependent Role="MovementType">
+        <PropertyRef Name="memberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Penalties__membe__47DBAE45">
+    <End Role="Members" Type="Self.Members" Multiplicity="0..1" />
+    <End Role="Penalties" Type="Self.Penalties" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Members">
+        <PropertyRef Name="memberId" />
+      </Principal>
+      <Dependent Role="Penalties">
+        <PropertyRef Name="memberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Penalties__movem__48CFD27E">
+    <End Role="MovementType" Type="Self.MovementType" Multiplicity="0..1" />
+    <End Role="Penalties" Type="Self.Penalties" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MovementType">
+        <PropertyRef Name="movementTypeId" />
+      </Principal>
+      <Dependent Role="Penalties">
+        <PropertyRef Name="movementTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DbLibraryModelStoreContainer">
+    <EntitySet Name="Author" EntityType="Self.Author" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CashRegisters" EntityType="Self.CashRegisters" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MovementType" EntityType="Self.MovementType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Penalties" EntityType="Self.Penalties" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Book__authorId__3C69FB99" Association="Self.FK__Book__authorId__3C69FB99">
+      <End Role="Author" EntitySet="Author" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Book__categoryId__3B75D760" Association="Self.FK__Book__categoryId__3B75D760">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Book" EntitySet="Book" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MovementT__bookI__4316F928" Association="Self.FK__MovementT__bookI__4316F928">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="MovementType" EntitySet="MovementType" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MovementT__emplo__44FF419A" Association="Self.FK__MovementT__emplo__44FF419A">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="MovementType" EntitySet="MovementType" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MovementT__membe__440B1D61" Association="Self.FK__MovementT__membe__440B1D61">
+      <End Role="Members" EntitySet="Members" />
+      <End Role="MovementType" EntitySet="MovementType" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Penalties__membe__47DBAE45" Association="Self.FK__Penalties__membe__47DBAE45">
+      <End Role="Members" EntitySet="Members" />
+      <End Role="Penalties" EntitySet="Penalties" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Penalties__movem__48CFD27E" Association="Self.FK__Penalties__movem__48CFD27E">
+      <End Role="MovementType" EntitySet="MovementType" />
+      <End Role="Penalties" EntitySet="Penalties" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

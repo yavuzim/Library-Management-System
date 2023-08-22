@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DbLibraryModelStoreContainer" CdmEntityContainer="DbLibraryEntities">
+    <EntitySetMapping Name="Author">
+      <EntityTypeMapping TypeName="DbLibraryModel.Author">
+        <MappingFragment StoreEntitySet="Author">
+          <ScalarProperty Name="authorId" ColumnName="authorId" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lasName" ColumnName="lasName" />
+          <ScalarProperty Name="detail" ColumnName="detail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Book">
+      <EntityTypeMapping TypeName="DbLibraryModel.Book">
+        <MappingFragment StoreEntitySet="Book">
+          <ScalarProperty Name="bookId" ColumnName="bookId" />
+          <ScalarProperty Name="bookName" ColumnName="bookName" />
+          <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+          <ScalarProperty Name="authorId" ColumnName="authorId" />
+          <ScalarProperty Name="publicationYear" ColumnName="publicationYear" />
+          <ScalarProperty Name="publishingHouse" ColumnName="publishingHouse" />
+          <ScalarProperty Name="pageNumber" ColumnName="pageNumber" />
+          <ScalarProperty Name="statusBook" ColumnName="statusBook" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CashRegisters">
+      <EntityTypeMapping TypeName="DbLibraryModel.CashRegisters">
+        <MappingFragment StoreEntitySet="CashRegisters">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="monthDate" ColumnName="monthDate" />
+          <ScalarProperty Name="totalAmount" ColumnName="totalAmount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Category">
+      <EntityTypeMapping TypeName="DbLibraryModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="categoryId" ColumnName="categoryId" />
+          <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee">
+      <EntityTypeMapping TypeName="DbLibraryModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+          <ScalarProperty Name="employeeName" ColumnName="employeeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="DbLibraryModel.Members">
+        <MappingFragment StoreEntitySet="Members">
+          <ScalarProperty Name="memberId" ColumnName="memberId" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lasName" ColumnName="lasName" />
+          <ScalarProperty Name="eMail" ColumnName="eMail" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="userPassword" ColumnName="userPassword" />
+          <ScalarProperty Name="photo" ColumnName="photo" />
+          <ScalarProperty Name="phone" ColumnName="phone" />
+          <ScalarProperty Name="school" ColumnName="school" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MovementType">
+      <EntityTypeMapping TypeName="DbLibraryModel.MovementType">
+        <MappingFragment StoreEntitySet="MovementType">
+          <ScalarProperty Name="movementTypeId" ColumnName="movementTypeId" />
+          <ScalarProperty Name="bookId" ColumnName="bookId" />
+          <ScalarProperty Name="memberId" ColumnName="memberId" />
+          <ScalarProperty Name="employeeId" ColumnName="employeeId" />
+          <ScalarProperty Name="purchaseDate" ColumnName="purchaseDate" />
+          <ScalarProperty Name="returnDate" ColumnName="returnDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Penalties">
+      <EntityTypeMapping TypeName="DbLibraryModel.Penalties">
+        <MappingFragment StoreEntitySet="Penalties">
+          <ScalarProperty Name="penaltyId" ColumnName="penaltyId" />
+          <ScalarProperty Name="memberId" ColumnName="memberId" />
+          <ScalarProperty Name="movementTypeId" ColumnName="movementTypeId" />
+          <ScalarProperty Name="penaltyStart" ColumnName="penaltyStart" />
+          <ScalarProperty Name="penaltyEnd" ColumnName="penaltyEnd" />
+          <ScalarProperty Name="money" ColumnName="money" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
