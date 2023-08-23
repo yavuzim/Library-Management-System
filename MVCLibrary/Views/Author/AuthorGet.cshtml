@@ -1,0 +1,31 @@
+﻿@model MVCLibrary.Models.Entities.Author
+@{
+    ViewBag.Title = "AuthorGet";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<title>Yazar Güncelle</title>
+
+@using (Html.BeginForm("AuthorUpdate", "Author", FormMethod.Post))
+{
+    <div class="form-group" style="margin-top:15px">
+        <label>Yazar Id</label>
+        @Html.TextBoxFor(author => author.authorId, new { @class = "form-control" })
+    </div>
+    <div class="form-group" style="margin-top:15px">
+        <label>Yazar Adı</label>
+        @Html.TextBoxFor(author => author.firstName, new { @class = "form-control" })
+    </div>
+    <div class="form-group" style="margin-top:15px">
+        <label>Yazar Soyadı</label>
+        @Html.TextBoxFor(author => author.lasName, new { @class = "form-control" })
+    </div>
+    <div class="form-group" style="margin-top:15px">
+        <label>Detay</label>
+        @Html.TextAreaFor(author => author.detail, 10, 1, new { @class = "form-control" })
+    </div>
+    <div>
+        <button class="btn btn-warning" type="submit">Güncelle</button>
+    </div>
+}
+

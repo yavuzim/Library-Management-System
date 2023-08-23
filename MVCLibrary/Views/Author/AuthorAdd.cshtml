@@ -1,0 +1,23 @@
+﻿@model MVCLibrary.Models.Entities.Author
+@{
+    ViewBag.Title = "AuthorAdd";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+<title>Yazar Ekle</title>
+<form class="form-group" method="post">
+    <div style="margin-top:15px">
+        <label>Yazar Adı</label>
+        @Html.TextBoxFor(author => author.firstName, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Yazar Soyadı</label>
+        @Html.TextBoxFor(author => author.lasName, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <label>Yazar Soyadı</label>
+        @Html.TextAreaFor(author => author.detail, 10, 1, new { @class = "form-control" })
+    </div>
+    <div style="margin-top:15px">
+        <button class="btn btn-primary" type="submit">Ekle</button>
+    </div>
+</form>
