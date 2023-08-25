@@ -7,7 +7,7 @@
 
 <title>Kitaplar</title>
 <div style="margin-top:15px">
-    <input type="text" class="form-control" placeholder="Aranacak Kitabın Adını Giriniz..."/>
+    <input type="text" class="form-control" placeholder="Aranacak Kitabın Adını Giriniz..." />
 </div>
 
 <table class="table table-bordered" style="margin-top: 15px">
@@ -22,21 +22,25 @@
         <th>Durum</th>
         <th>Sil</th>
         <th>Güncelle</th>
-    </tr> 
-    @{ 
+    </tr>
+    @{
         foreach (var book in Model)
         {
             <tr>
                 <td>@book.bookId</td>
                 <td>@book.bookName</td>
-                <td>@book.authorId</td>
-                <td>@book.categoryId</td>
+                <td>@book.Author.firstName @book.Author.lasName</td>
+                <td>@book.Category.categoryName</td>
                 <td>@book.publicationYear</td>
                 <td>@book.publishingHouse</td>
                 <td>@book.pageNumber</td>
                 <td>@book.statusBook</td>
-                <td><a href="/Book/BookDelete/" type="submit" class="btn btn-danger">Sil</a></td>
-                <td><a href="/Book/BookGet/" type="submit" class="btn btn-warning">Güncelle</a></td>
+                @*<td><a href="/Book/BookDelete/@book.bookId" type="submit" class="btn btn-danger">Sil</a></td>*@
+                <td>
+                    @Html.ActionLink("Sil", "BookDelete",
+    new { id = book.bookId }, new { @class = "btn btn-danger", onclick = "return confirm('Silmek İstiyor Musunuz?')" })
+                </td>
+                <td><a href="/Book/BookGet/@book.bookId" type="submit" class="btn btn-warning">Güncelle</a></td>
             </tr>
         }
     }

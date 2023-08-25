@@ -1,0 +1,38 @@
+﻿@model MVCLibrary.Models.Entities.Book
+@{
+    ViewBag.Title = "BookGet";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<title>Kitap Güncelle</title>
+@using (Html.BeginForm("BookUpdate", "Book", FormMethod.Post))
+{
+    <div class="form-group" style="margin-top:15px">
+        <label>Kitap Adı</label>
+        @Html.TextBoxFor(book => book.bookName, new { @class = "form-control" })
+    </div>
+    <div class="form-group" style="margin-top:15px">
+        <label>Yazarı</label>
+        @Html.DropDownListFor(book => book.authorId, (List<SelectListItem>)ViewBag._authorList, new { @class = "form-control" })
+    </div>
+    <div class="form-group" style="margin-top:15px">
+        <label>Kategorisi</label>
+        @Html.DropDownListFor(book => book.categoryId, (List<SelectListItem>)ViewBag._categoryList, new { @class = "form-control" })
+    </div>
+    <div class="form-group" style="margin-top:15px">
+        <label>Yayınlanma Yılı</label>
+        @Html.TextBoxFor(book => book.publicationYear, new { @class = "form-control" })
+    </div>
+    <div class="form-group" style="margin-top:15px">
+        <label>Yayınevi</label>
+        @Html.TextBoxFor(book => book.publishingHouse, new { @class = "form-control" })
+    </div>
+    <div class="form-group" style="margin-top:15px">
+        <label>Sayfa Sayısı</label>
+        @Html.TextBoxFor(book => book.pageNumber, new { @class = "form-control" })
+    </div>
+    <div>
+        <button class="btn btn-warning" type="submit">Güncelle</button>
+    </div>
+
+}

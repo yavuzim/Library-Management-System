@@ -13,11 +13,11 @@
     </div>
     <div style="margin-top:15px">
         <label>Kategori</label>
-        @Html.DropDownListFor(book => book.categoryId, (List<SelectListItem>) ViewBag._categoryList, new { @class = "form-control" })
+        @Html.DropDownListFor(book => book.categoryId, (List<SelectListItem>)ViewBag._categoryList, new { @class = "form-control" })
     </div>
     <div style="margin-top:15px">
         <label>Yazarı</label>
-        @Html.DropDownListFor(book => book.categoryId, (List<SelectListItem>)ViewBag._authorList, new { @class = "form-control" })
+        @Html.DropDownListFor(book => book.authorId, (List<SelectListItem>)ViewBag._authorList, new { @class = "form-control" })
     </div>
     <div style="margin-top:15px">
         <label>Basım Yılı</label>
