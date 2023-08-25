@@ -1,0 +1,46 @@
+﻿@using MVCLibrary.Models.Entities
+@model List<Book>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layout.cshtml";
+}
+
+<title>Kitaplar</title>
+<div style="margin-top:15px">
+    <input type="text" class="form-control" placeholder="Aranacak Kitabın Adını Giriniz..."/>
+</div>
+
+<table class="table table-bordered" style="margin-top: 15px">
+    <tr class="table table-dark">
+        <th>ID</th>
+        <th>Kitap Adı</th>
+        <th>Yazar</th>
+        <th>Kategori</th>
+        <th>Basım Yılı</th>
+        <th>Yayınevi</th>
+        <th>Sayfa</th>
+        <th>Durum</th>
+        <th>Sil</th>
+        <th>Güncelle</th>
+    </tr> 
+    @{ 
+        foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.bookId</td>
+                <td>@book.bookName</td>
+                <td>@book.authorId</td>
+                <td>@book.categoryId</td>
+                <td>@book.publicationYear</td>
+                <td>@book.publishingHouse</td>
+                <td>@book.pageNumber</td>
+                <td>@book.statusBook</td>
+                <td><a href="/Book/BookDelete/" type="submit" class="btn btn-danger">Sil</a></td>
+                <td><a href="/Book/BookGet/" type="submit" class="btn btn-warning">Güncelle</a></td>
+            </tr>
+        }
+    }
+</table>
+<a href="/Book/BookAdd/" type="submit" class="btn btn-info">Yeni Kitap Ekle</a>
+
+
