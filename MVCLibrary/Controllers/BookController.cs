@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Antlr.Runtime.Misc;
 using MVCLibrary.Models.Entities;
 
 namespace MVCLibrary.Controllers
@@ -10,15 +11,24 @@ namespace MVCLibrary.Controllers
     public class BookController : Controller
     {
         DbLibraryEntities dbLibraryEntities;
+        Book book;
         public BookController()
         {
             dbLibraryEntities = new DbLibraryEntities();
         }
         // GET: Book
-        public ActionResult Index()
+        public ActionResult Index(string parameters, string action)
         {
-            var books = dbLibraryEntities.Book.ToList();
-            return View(books);
+            var books = from book in dbLibraryEntities.Book select book;
+            if (!string.IsNullOrEmpty(parameters))
+            {
+                books = books.Where(p => p.bookName.Contains(parameters));
+            }
+            if (action.Equals("Temizle"))
+            {
+                books = dbLibraryEntities.Book;
+            }
+            return View(books.ToList());
         }
         [HttpGet]
         public ActionResult BookAdd()
@@ -50,7 +60,7 @@ namespace MVCLibrary.Controllers
         }
         public ActionResult BookGet(int id)
         {
-            var book = dbLibraryEntities.Book.Find(id);
+            book = dbLibraryEntities.Book.Find(id);
             ViewBag._authorList = GetSelectListItems<Author>(dbLibraryEntities.Author.ToList(),
                author => author.firstName + ' ' + author.lasName,
                author => author.authorId.ToString());
@@ -59,18 +69,20 @@ namespace MVCLibrary.Controllers
                 category => category.categoryId.ToString());
             return View("BookGet", book);
         }
-        public ActionResult BookUpdate(Book updateBook)
+
+        public ActionResult UpdateBook(Book updateBook)
         {
-            var book = dbLibraryEntities.Book.Find(updateBook.bookId);
+            book = dbLibraryEntities.Book.Find(updateBook.bookId);
             book.bookName = updateBook.bookName;
-            book.Author = dbLibraryEntities.Author.Where(p => p.authorId == updateBook.authorId).FirstOrDefault();
-            book.Category = dbLibraryEntities.Category.Where(p => p.categoryId == updateBook.categoryId).FirstOrDefault();
+            book.Author = dbLibraryEntities.Author.Where(author => author.authorId == updateBook.authorId).FirstOrDefault();
+            book.Category = dbLibraryEntities.Category.Where(category => category.categoryId == updateBook.categoryId).FirstOrDefault();
             book.publicationYear = updateBook.publicationYear;
             book.publishingHouse = updateBook.publishingHouse;
             book.pageNumber = updateBook.pageNumber;
             dbLibraryEntities.SaveChanges();
             return RedirectToAction("Index");
         }
+
         public List<SelectListItem> GetSelectListItems<TEntity>(List<TEntity> entities, Func<TEntity, string> textSelector, Func<TEntity, string> valueSelector)
         {
             return entities.Select(entity => new SelectListItem

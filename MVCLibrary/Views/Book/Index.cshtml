@@ -4,12 +4,49 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/Layout.cshtml";
 }
+<style>
+    #parameters{
+        height:25px;
+        width: 350px;
+        border-radius: 5px;
+        border-style:double
+    }
+    .search-button{
+        background-color : blue;
+    }
+    .clear-button{
+        background-color:brown
+    }
+    .search-button:hover {
+        background-color: #4c6af4;
+        color: white;
+    }
 
+    .clear-button:hover {
+        background-color: #da4c53;
+        color: white;
+    }
+    .btn{
+       color:white
+    }
+</style>
 <title>Kitaplar</title>
-<div style="margin-top:15px">
-    <input type="text" class="form-control" placeholder="Aranacak Kitabın Adını Giriniz..." />
-</div>
 
+@using (Html.BeginForm("Index", "Book", FormMethod.Get))
+{
+    <div style="margin-top:15px">
+        <b>Kitap Ara : </b>
+        @Html.TextBox("parameters")
+        <input class="btn search-button" type="submit" value="Ara" />
+        <input class="btn clear-button" type="submit" name="action" value="Temizle" onclick="clearBtn()" />
+    </div>
+}
+<script>
+    // Temizle butonuna bastığınızda bu fonksiyonu çağırabilirsiniz
+    function clearBtn() {
+        document.getElementById("parameters").value = "";
+    }
+</script>
 <table class="table table-bordered" style="margin-top: 15px">
     <tr class="table table-dark">
         <th>ID</th>
